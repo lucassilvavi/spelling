@@ -1,20 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import NavigationContainer from './src/navigators/NavigationContainer';
+import { configureFonts, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Feather as Icon } from '@expo/vector-icons';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <PaperProvider
+            theme={theme}
+            settings={{
+                icon: props => <Icon {...props} />,
+            }}
+        >
+            <NavigationContainer />
+        </PaperProvider>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const theme = {
+    ...DefaultTheme,
+    fonts: configureFonts(fonts),
+    colors: {
+        ...DefaultTheme.colors,
+        primary: '#39bfb1',
+        accent: '#FFFFFF',
+        vermelho: '#FF0000'
+    },
+};
+
+const fonts: any = {
+    default: {
+        regular: {
+            fontFamily: 'sans-serif',
+            fontWeight: 'normal',
+        },
+        medium: {
+            fontFamily: 'sans-serif-medium',
+            fontWeight: 'normal',
+        },
+        light: {
+            fontFamily: 'sans-serif-light',
+            fontWeight: 'normal',
+        },
+        thin: {
+            fontFamily: 'sans-serif-thin',
+            fontWeight: 'normal',
+        },
+    }
+}
